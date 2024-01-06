@@ -19,6 +19,7 @@ from pred_utils_v1 import *
 import fraud_utils
 from fraud_utils import *
 import os
+from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
@@ -53,6 +54,33 @@ def choose_model_and_data(model_name):
     else:
         raise ValueError("Invalid model name")
     return pipeline, X_train, y_train
+
+
+@app.route('/')
+def index():
+    return render_template_string("""
+    <html>
+        <head>
+            <title>FraudSenseXAI</title>
+        </head>
+        <body>
+            <h1>FraudSenseXAI</h1>
+            <h2>Overview</h2>
+            <p><strong>FraudSenseXAI</strong> is an innovative Machine Learning (ML) and Explainable Artificial Intelligence (XAI) application, developed as a part of an MSc final project by Othniel Obasi. This application is dedicated to detecting and analyzing fraudulent activities, with a strong emphasis on the interpretability and transparency of its AI models.</p>
+            <h2>Key Features</h2>
+            <ul>
+                <li><strong>Robust Fraud Detection:</strong> Utilizes advanced ML techniques to identify fraudulent transactions accurately.</li>
+                <li><strong>Explainable AI Elements:</strong> Employs XAI approaches to provide clear insights into the decision-making processes of the AI.</li>
+                <li><strong>Interactive Web Interface:</strong> Features a user-friendly web application for easy access and interpretation of results.</li>
+                <li><strong>Dynamic Visualizations:</strong> Integrates Plotly for interactive and insightful data visualizations.</li>
+                <li><strong>Applicability Across Sectors:</strong> Suitable for use in finance, e-commerce, digital banking, and other sectors.</li>
+            </ul>
+            <h2>About the Author</h2>
+            <p>This project is an MSc Dissertation on the XAI Application of Fraud Detection, authored by Othniel Obasi. It represents a significant contribution to the field of AI, offering practical solutions and valuable insights for the detection of fraudulent activities using AI.</p>
+        </body>
+    </html>
+    """)
+
 
 # Endpoint to predict and explain
 @app.route('/predict_and_explain', methods=['POST'])
