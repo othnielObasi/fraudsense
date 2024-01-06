@@ -88,7 +88,7 @@ def predict_and_explain():
         lime_explanation = interpret_lime_results(pipeline, X_train, live_df, model_name)
         radial_plot = visualize_counterfactuals_radar_plotly(cf_as_dict, original_instance)
         bar_chart = visualize_counterfactuals_plotly(original_instance, cf_as_dict)
-        narrative = explain_counterfactual_percentage_v1(original_instance, cf_as_dict)
+        narrative = explain_counterfactual_percentage(original_instance, cf_as_dict)
 
         # Convert plotly figures to JSON
         radial_plot_json = convert_plotly_figure_to_json(radial_plot)
