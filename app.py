@@ -55,7 +55,7 @@ def choose_model_and_data(model_name):
         raise ValueError("Invalid model name")
     return pipeline, X_train, y_train
 
-
+@app.route('/')
 def index():
     return render_template_string("""
     <html>
