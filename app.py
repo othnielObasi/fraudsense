@@ -18,6 +18,7 @@ import pred_utils_v1
 from pred_utils_v1 import *
 import fraud_utils
 from fraud_utils import *
+import os
 
 app = Flask(__name__)
 
@@ -105,6 +106,12 @@ def predict_and_explain():
         app.logger.error("Error in predict_and_explain: " + str(e))
         return jsonify({'error': 'An error occurred during processing.'}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True)  # Set debug=False in a production environment
+
+
+
+if __name__ == "__main__":
+    # Set debug to False in a production environment
+    debug_mode = os.environ.get("DEBUG", "False") == "True"
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
 
