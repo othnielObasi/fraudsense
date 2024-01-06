@@ -55,6 +55,7 @@ def choose_model_and_data(model_name):
         raise ValueError("Invalid model name")
     return pipeline, X_train, y_train
 
+
 @app.route('/')
 def index():
     return render_template_string("""
@@ -65,7 +66,7 @@ def index():
                 body {
                     font-family: 'Arial', sans-serif;
                     margin: 0;
-                    padding: 0;
+                    padding: 0 0 100px; /* Adjust bottom padding */
                     background-color: #f4f4f4;
                     color: #333;
                     line-height: 1.6;
@@ -74,6 +75,7 @@ def index():
                     width: 80%;
                     margin: auto;
                     overflow: hidden;
+                    padding-bottom: 120px; /* Additional padding to push content up */
                 }
                 h1, h2 {
                     color: #0056b3;
@@ -136,7 +138,6 @@ def index():
         </body>
     </html>
     """)
-
 
 # Endpoint to predict and explain
 @app.route('/predict_and_explain', methods=['POST'])
