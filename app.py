@@ -3,7 +3,9 @@
 
 # In[ ]:
 
-
+import dice_ml
+from dice_ml.utils import helpers 
+from dice_ml.utils.serialize import DummyDataInterface
 from flask import Flask, request, jsonify
 import joblib
 import pandas as pd
@@ -16,6 +18,8 @@ import pred_utils_v1
 from pred_utils_v1 import *
 import fraud_utils
 from fraud_utils import *
+import os
+from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
@@ -50,6 +54,90 @@ def choose_model_and_data(model_name):
     else:
         raise ValueError("Invalid model name")
     return pipeline, X_train, y_train
+
+
+@app.route('/')
+def index():
+    return render_template_string("""
+    <html>
+        <head>
+            <title>FraudSenseXAI</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0 0 100px; /* Adjust bottom padding */
+                    background-color: #f4f4f4;
+                    color: #333;
+                    line-height: 1.6;
+                }
+                .container {
+                    width: 80%;
+                    margin: auto;
+                    overflow: hidden;
+                    padding-bottom: 120px; /* Additional padding to push content up */
+                }
+                h1, h2 {
+                    color: #0056b3;
+                }
+                h1 {
+                    font-size: 2.5em;
+                    margin-bottom: 10px;
+                }
+                h2 {
+                    font-size: 1.8em;
+                    margin-top: 30px;
+                }
+                p {
+                    font-size: 1.1em;
+                }
+                ul {
+                    list-style-type: none;
+                    padding: 0;
+                }
+                ul li {
+                    background: #e9ecef;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 5px;
+                }
+                ul li strong {
+                    color: #007bff;
+                }
+                footer {
+                    background-color: #333;
+                    color: #fff;
+                    text-align: center;
+                    padding: 10px;
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>FraudSenseXAI</h1>
+                <h2>Overview</h2>
+                <p><strong>FraudSenseXAI</strong> is an innovative Machine Learning (ML) and Explainable Artificial Intelligence (XAI) application, developed as a part of an MSc final project by Othniel Obasi. This application is dedicated to detecting and analyzing fraudulent activities, with a strong emphasis on the interpretability and transparency of its AI models.</p>
+                <h2>Key Features</h2>
+                <ul>
+                    <li><strong>Robust Fraud Detection:</strong> Utilizes advanced ML techniques to identify fraudulent transactions accurately.</li>
+                    <li><strong>Explainable AI Elements:</strong> Employs XAI approaches to provide clear insights into the decision-making processes of the AI.</li>
+                    <li><strong>Interactive Web Interface:</strong> Features a user-friendly web application for easy access and interpretation of results.</li>
+                    <li><strong>Dynamic Visualizations:</strong> Integrates Plotly for interactive and insightful data visualizations.</li>
+                    <li><strong>Applicability Across Sectors:</strong> Suitable for use in finance, e-commerce, digital banking, and other sectors.</li>
+                </ul>
+                <h2>About the Author</h2>
+                <p>This project is an MSc Dissertation on the XAI Application of Fraud Detection, authored by Othniel Obasi. It represents a significant contribution to the field of AI, offering practical solutions and valuable insights for the detection of fraudulent activities using AI.</p>
+            </div>
+            <footer>
+                <p>FraudSenseXAI © 2024</p>
+            </footer>
+        </body>
+    </html>
+    """)
 
 # Endpoint to predict and explain
 @app.route('/predict_and_explain', methods=['POST'])
@@ -86,7 +174,7 @@ def predict_and_explain():
         lime_explanation = interpret_lime_results(pipeline, X_train, live_df, model_name)
         radial_plot = visualize_counterfactuals_radar_plotly(cf_as_dict, original_instance)
         bar_chart = visualize_counterfactuals_plotly(original_instance, cf_as_dict)
-        narrative = explain_counterfactual_percentage_v1(original_instance, cf_as_dict)
+        narrative = explain_counterfactual_percentage(original_instance, cf_as_dict)
 
         # Convert plotly figures to JSON
         radial_plot_json = convert_plotly_figure_to_json(radial_plot)
@@ -103,6 +191,12 @@ def predict_and_explain():
         app.logger.error("Error in predict_and_explain: " + str(e))
         return jsonify({'error': 'An error occurred during processing.'}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True)  # Set debug=False in a production environment
+
+
+
+if __name__ == "__main__":
+    # Set debug to False in a production environment
+    debug_mode = os.environ.get("DEBUG", "False") == "True"
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
 
