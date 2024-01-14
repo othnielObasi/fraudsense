@@ -275,3 +275,94 @@ def explain_counterfactual_percentage(original_instance, cf_as_dict):
 
     return narrative
 
+
+def visualize_counterfactuals_radar_plotly_v1(original_instance, cf_as_dict):
+    # Prepare data for visualization
+    features = list(cf_as_dict.keys())
+    original_values = []
+    counterfactual_values = []
+
+    for feature in features:
+        original = original_instance.get(feature, None)
+        counterfactual = cf_as_dict.get(feature, None)
+        if original is not None and counterfactual is not None:
+            original_values.append(original)
+            # Use counterfactual value if different from original, else use None
+            counterfactual_values.append(counterfactual if original != counterfactual else None)
+
+    # Filter out None values from counterfactual_values for plotting
+    plot_features = [feature for feature, cf_value in zip(features, counterfactual_values) if cf_value is not None]
+    plot_counterfactual_values = [cf_value for cf_value in counterfactual_values if cf_value is not None]
+
+    # Creating a radar chart using Plotly Graph Objects
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatterpolar(
+        r=original_values,
+        theta=features,
+        fill='toself',
+        name='Original',
+        line=dict(color='blue'),
+        fillcolor='rgba(0, 0, 255, 0.1)'
+    ))
+
+    if plot_counterfactual_values:
+        fig.add_trace(go.Scatterpolar(
+            r=plot_counterfactual_values,
+            theta=plot_features,
+            fill='toself',
+            name='Counterfactual',
+            line=dict(color='red'),
+            fillcolor='rgba(255, 0, 0, 0.1)'
+        ))
+
+    # Update the layout
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[min(original_values + [val for val in counterfactual_values if val is not None]), 
+                       max(original_values + [val for val in counterfactual_values if val is not None])]
+            )),
+        title='Counterfactual Radar Chart',
+        showlegend=True
+    )
+
+    return fig
+
+
+
+def visualize_counterfactuals_plotly_v1(original_instance, cf_as_dict):
+    # Prepare data for visualization
+    features = list(cf_as_dict.keys())
+    original_values = []
+    counterfactual_values = []
+    filtered_features = []
+    
+    for feature in features:
+        original = original_instance.get(feature, None)
+        counterfactual = cf_as_dict.get(feature, None)
+        
+        # Include only features where the original and counterfactual values are different
+        if original is not None and counterfactual is not None and original != counterfactual:
+            filtered_features.append(feature)
+            original_values.append(original)
+            counterfactual_values.append(counterfactual)
+    
+    # Creating bar charts using Plotly Graph Objects
+    fig = go.Figure(data=[
+        go.Bar(name='Original', x=filtered_features, y=original_values, marker_color='blue'),
+        go.Bar(name='Counterfactual', x=filtered_features, y=counterfactual_values, marker_color='red')
+    ])
+    
+    # Update the layout
+    fig.update_layout(
+        barmode='group',
+        title='Counterfactual Explanations',
+        xaxis_title='Feature',
+        yaxis_title='Value'
+    )
+
+    return fig
+
+

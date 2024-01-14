@@ -130,7 +130,8 @@ def index():
                     <li><strong>Applicability Across Sectors:</strong> Suitable for use in finance, e-commerce, digital banking, and other sectors.</li>
                 </ul>
                 <h2>About the Author</h2>
-                <p>This project is an MSc Dissertation on the XAI Application of Fraud Detection, authored by Othniel Obasi. It represents a significant contribution to the field of AI, offering practical solutions and valuable insights for the detection of fraudulent activities using AI.</p>
+                <p>This project is an MSc Dissertation on the XAI Application of Fraud Detection, authored by Othniel Obasi. It represents a significant contribution to the field of AI, offering practical solutions and valuable insights for the detection of fraudulent activities using AI. For more information, visit the <a href="https://huggingface.co/spaces/Othniel74/XAIFraudSense" target="_blank">project page</a>  </p>
+                <h2>About the Author</h2>
             </div>
             <footer>
                 <p>FraudSenseXAI © 2024</p>
@@ -172,8 +173,8 @@ def predict_and_explain():
         # Generate explanations and visualizations
         cf_as_dict, original_instance = cf_explanations(pipeline, X_train, y_train, live_df, model_name, total_CFs=1)
         lime_explanation = interpret_lime_results(pipeline, X_train, live_df, model_name)
-        radial_plot = visualize_counterfactuals_radar_plotly(cf_as_dict, original_instance)
-        bar_chart = visualize_counterfactuals_plotly(original_instance, cf_as_dict)
+        radial_plot = visualize_counterfactuals_radar_plotly_v1(original_instance, cf_as_dict)
+        bar_chart = visualize_counterfactuals_plotly_v1(original_instance, cf_as_dict)
         narrative = explain_counterfactual_percentage(original_instance, cf_as_dict)
 
         # Convert plotly figures to JSON
