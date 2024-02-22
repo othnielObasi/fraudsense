@@ -1,7 +1,7 @@
 # FraudSenseXAI
 
 ## Overview
-**FraudSenseXAI** is an innovative Machine Learning (ML) and Explainable Artificial Intelligence (XAI) application, developed as a part of an MSc final project. This application is dedicated to detecting and analyzing fraudulent activities, with a strong emphasis on the interpretability and transparency of its AI models.
+**FraudSenseXAI** is an innovative Machine Learning (ML) and Explainable Artificial Intelligence (XAI) application, developed as a part of a research project. This application is dedicated to detecting and analyzing fraudulent activities, with a strong emphasis on the interpretability and transparency of its AI models.
 
 ## Key Features
 - **Robust Fraud Detection:** Utilizes advanced ML techniques to identify fraudulent transactions accurately.
@@ -15,7 +15,7 @@
 - **Python:** The core programming language for ML and backend development.
 - **Joblib:** For model serialization and deserialization.
 - **Bootstrap & Plotly:** For frontend development and interactive plotting.
-- **Vercel:** Used for deployment and hosting.
+- **Heroku, Grdaio & Hugging Faces:** Used for deployment and hosting.
 
 ## Installation & Setup
 Clone the project and install dependencies:
