@@ -13,4 +13,5 @@ dice_ml==0.11
 lime==0.2.0.1
 yellowbrick==1.5
 networkx == 2.8.4
-python-louvain == 0.16  
+python-louvain == 0.16 
+shap==0.43.0
