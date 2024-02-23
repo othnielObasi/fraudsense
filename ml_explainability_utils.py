@@ -23,7 +23,7 @@ import plotly.figure_factory as ff
 import eli5
 import seaborn as sns
 import matplotlib.pyplot as plt
-from IPython.display import display, HTML
+# from IPython.display import display, HTML
 import networkx as nx
 import community as community_louvain
 from matplotlib import patheffects, colors, cm
