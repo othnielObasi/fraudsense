@@ -15,3 +15,4 @@ yellowbrick==1.5
 networkx == 2.8.4
 python-louvain == 0.16 
 shap==0.43.0
+eli5=0.13.0
