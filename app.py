@@ -191,7 +191,7 @@ def index():
 
 
 # Endpoint to predict and explain
-@app.route('/predict_and_explain', methods=['POST'])
+@app.route('/predict_and_explain', methods=['GET', 'POST'])
 def predict_and_explain():
     try:
         
