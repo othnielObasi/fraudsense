@@ -5,6 +5,7 @@
 
 
 import dice_ml
+import shap
 from dice_ml.utils import helpers 
 from flask import send_file
 from dice_ml.utils.serialize import DummyDataInterface
