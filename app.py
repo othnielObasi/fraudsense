@@ -180,7 +180,7 @@ def index():
                 </ul>
                 <h2>About the Author</h2>
                 <p>This project is an MSc Dissertation on the XAI Application of Fraud Detection, authored by Othniel Obasi. It represents a significant contribution to the field of AI, offering practical solutions and valuable insights for the detection of fraudulent activities using AI. For more information, visit the <a href="https://huggingface.co/spaces/Othniel74/Fraudsense-v1" target="_blank">project page</a>  </p>
-                <h2>About the Author</h2>
+            
             </div>
             <footer>
                 <p>FraudSenseXAI © 2024</p>
