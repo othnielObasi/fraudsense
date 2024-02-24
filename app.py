@@ -3,7 +3,7 @@
 
 # In[ ]:
 
-
+from flask_cors import CORS
 import dice_ml
 from dice_ml.utils import helpers 
 from flask import send_file
@@ -28,6 +28,7 @@ from ml_explainability_utils import LIMEModelInterpreter, ModelExplainer, SHAPVi
 
 
 app = Flask(__name__)
+CORS(app)
 
 # Load models and data outside of request context for efficiency
 try:
