@@ -20,7 +20,7 @@
 ## Installation & Setup
 Clone the project and install dependencies:
 ```bash
-git clone https://github.com/your-username/FraudSenseXAI.git
+git clone https://github.com/othniObasi/FraudSenseXAI.git
 cd FraudSenseXAI
 pip install -r requirements.txt
 
