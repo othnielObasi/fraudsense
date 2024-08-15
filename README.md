@@ -17,24 +17,4 @@
 - **Bootstrap & Plotly:** For frontend development and interactive plotting.
 - **Heroku, Grdaio & Hugging Faces:** Used for deployment and hosting.
 
-## Installation & Setup
-Clone the project and install dependencies:
-```bash
-git clone https://github.com/othniObasi/fraudsense.git
-cd fraudsense
-pip install -r requirements.txt
 
-
-Usage
-To start the FastAPI server:
-uvicorn api.main:app --reload
-Navigate to http://localhost:8000 in your web browser to access the application.
-
-Contributing
-Contributions to FraudSenseXAI are welcomed, including bug fixes, feature enhancements, and documentation improvements. Please feel free to submit pull requests or open issues.
-
-License
-This project is licensed under the MIT License.
-
-Acknowledgements
-Special thanks to my academic mentors, peers, and everyone who supported and guided me throughout the development of this project. Your insights and assistance have been invaluable.
