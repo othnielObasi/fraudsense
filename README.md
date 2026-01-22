@@ -203,11 +203,8 @@ This ensures reproducible deployment and streamlined updates.
 
 ## 🌐 Live Demo
 
-Hugging Face Space:  
-👉 https://huggingface.co/spaces/Othniel74/Fraudsense-v1  
-
-Heroku API (private/limited access):  
-**
+Hugging Face Space: 👉 https://huggingface.co/spaces/Othniel74/Fraudsense-v1  
+Heroku API (private/limited access)
 
 ---
 
