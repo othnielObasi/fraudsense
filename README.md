@@ -207,7 +207,7 @@ Hugging Face Space:
 👉 https://huggingface.co/spaces/Othniel74/Fraudsense-v1  
 
 Heroku API (private/limited access):  
-*(URL if applicable)*
+**
 
 ---
 
