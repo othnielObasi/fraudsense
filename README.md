@@ -204,11 +204,11 @@ This ensures reproducible deployment and streamlined updates.
 ## 🌐 Live Demo
 
 Hugging Face Space: 👉 https://huggingface.co/spaces/Othniel74/Fraudsense-v1  
-Heroku API (private/limited access)
+Heroku API: https://fraudxai-sense-15ee3d1f35e7.herokuapp.com/predict_and_explain
 
 ---
 
-## ⭐ Repo Badges (Optional)
+## ⭐ Repo Badges
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Flask](https://img.shields.io/badge/Flask-API-green)
@@ -224,13 +224,13 @@ Heroku API (private/limited access)
 If you use FraudSenseXAI in your research, please cite:
 
 ```
-Obasi, O. (2024). FraudSenseXAI: A Multi-Method Explainability Platform for Fraud Detection.
+Obasi, C. O. (2024). FraudSenseXAI: A Multi-Method Explainability Platform for Fraud Detection.
 ```
 
 ## 🔌 API Documentation
 
 ### Base URL
-- **Heroku (API):** *(add your URL here)*
+- **Heroku (API):*https://fraudxai-sense-15ee3d1f35e7.herokuapp.com/predict_and_explain*
 - **Hugging Face demo:** https://huggingface.co/spaces/Othniel74/Fraudsense-v1
 
 ### Endpoints
@@ -269,7 +269,7 @@ curl -X POST "https://<YOUR-HEROKU-APP>.herokuapp.com/predict_and_explain"   -H 
 ```python
 import requests
 
-url = "https://<YOUR-HEROKU-APP>.herokuapp.com/predict_and_explain"
+url = "https://fraudxai-sense-15ee3d1f35e7.herokuapp.com/predict_and_explain"
 payload = {
     "selected_model": "Random Forest",
     "selected_interpretability_method": "LIME",
@@ -289,7 +289,7 @@ print("Explanation:", data["model_explanation"][:300], "...")
 
 ##### Example JavaScript (fetch)
 ```js
-const url = "https://<YOUR-HEROKU-APP>.herokuapp.com/predict_and_explain";
+const url = "https://fraudxai-sense-15ee3d1f35e7.herokuapp.com/predict_and_explain";
 
 const payload = {
   selected_model: "Random Forest",
